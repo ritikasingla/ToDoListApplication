@@ -31,6 +31,8 @@ class LoginComponent extends Component {
                 isSuccess : true,
                 isFailed : false
             })
+
+            this.props.history.push(`/welcome/${this.state.username}`)
         }
         else {
             this.setState( {

@@ -5,7 +5,7 @@ class WelcomeComponent extends Component {
     render() {
         return (
             <div>
-                Hi
+                Hi {this.props.match.params.nameuser}
             </div>
         )
     }
