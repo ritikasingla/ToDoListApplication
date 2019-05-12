@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Todocss.css';
+import AuthenticateUser from './AuthenticateUser.js'
 class LoginComponent extends Component {
 
     constructor(props) {
@@ -18,7 +19,6 @@ class LoginComponent extends Component {
 
     handleChange(event) {
 
-        console.log(event.target.value)
         this.setState({
                 [event.target.name] : event.target.value
         })
@@ -27,6 +27,8 @@ class LoginComponent extends Component {
     loginClicked(event) {
 
         if(this.state.username==='ritika' && this.state.password==='ritika') {
+            AuthenticateUser.saveCredentials(this.state.username);
+            console.log("logged");
             this.setState( {
                 isSuccess : true,
                 isFailed : false
@@ -45,12 +47,15 @@ class LoginComponent extends Component {
     render() {
         return (
             <div>
-                {/*this.state.isSuccess? <div>Successful</div> : <div>failed</div> */}
-                {this.state.isSuccess && <div>Successful</div>}
-                {this.state.isFailed && <div>Failed</div>}
+            <h1>Login</h1>
+            <div className="container">
+                {/*this.state.isSuccess? <div>Successful</div> : <div>failed</div> 
+                {this.state.isSuccess && <div>Successful</div>}*/}
+                {this.state.isFailed && <div className="alert alert-warning">Invalid credentials</div>}
                 <input type="text" className="username" name = "username" value={this.state.username} onChange={this.handleChange}/>
                 <input type="password" className="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                <button onClick={this.loginClicked}>Login</button>
+                <button className="btn btn-success"onClick={this.loginClicked}>Login</button>
+            </div>
             </div>
         )
     }
